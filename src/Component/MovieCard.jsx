@@ -17,6 +17,7 @@ const MovieCard =({_id,image,name,ticketprice,title,releasedate,budget,director}
      <Card
 
     hoverable
+
      style={{ 
       height: '100%',
       width:'100%',
@@ -27,9 +28,10 @@ const MovieCard =({_id,image,name,ticketprice,title,releasedate,budget,director}
      cover={
        <Link to={`/movie/${_id}`} >
     <img
+    className="zoom-img"
       src={image}
       alt={name}
-      style={{ width: '100%', height:"500px",objectFit: "cover" }}
+      style={{ width: '100%', height:"500px",objectFit: "cover",backgroundColor:"black"}}
      />
         </Link>
     }
@@ -55,7 +57,7 @@ const MovieCard =({_id,image,name,ticketprice,title,releasedate,budget,director}
         </div>
       <div className="d-flex justify-content-between mt-3 gap-2"></div>  
         <button
-  className="btn btn-success flex-fill "
+  className="btn btn-success flex-fill zoom-button  d-block mx-auto"
   onClick={() => navigate(`/movie/${_id}`)}
 >
   Book Ticket
@@ -69,10 +71,10 @@ const MovieCard =({_id,image,name,ticketprice,title,releasedate,budget,director}
     budget,
     director})} >
             Add to Cart
-          </button>*/}
+          </button>
           
           <button
-  className="btn btn-success  flex-fill ms-1"
+ className="btn btn-success  flex-fill ms-1 zoom-button"
   onClick={() => {
     updateCart('add', {
       _id,
@@ -91,7 +93,7 @@ const MovieCard =({_id,image,name,ticketprice,title,releasedate,budget,director}
   }}
 >
   Add to Cart
-</button>
+</button>*/}
 
  
   </Card>

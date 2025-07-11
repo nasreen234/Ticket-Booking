@@ -38,7 +38,7 @@ const Loginpage = () => {
         onSubmit={handleManualLogin}
         className="border p-4 rounded shadow mb-4"
         style={{ width: '100%', maxWidth: '400px' }}
-      >
+      > 
         <h3 className="text-center mb-3">Login</h3>
         <input
           type="email"

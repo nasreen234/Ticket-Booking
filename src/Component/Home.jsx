@@ -2,6 +2,9 @@ import { useState, useEffect,useContext } from 'react';
 import MovieCard from './MovieCard';
 import Navbar from './Navbar';
 import { SearchContext } from '../Context/SearchContext';
+import Owl from './Owl'
+
+
 
 
 const Home = () => {
@@ -13,7 +16,7 @@ const Home = () => {
     fetch("https://backend-crud-one.vercel.app/product")
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        console.log(data);  
         setData(data);
       });
   }, []);
@@ -21,11 +24,12 @@ const Home = () => {
    const filteredMovies = data.filter(movie =>
     movie.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
-
+ 
   return (
     <>
     <Navbar />
-
+    <Owl/>
+ 
       <h2 style={{ textAlign: 'center', marginTop: '20px' }}>🎬 Movie List</h2>
       <div style={{ padding: '20px' }}>
         <div className="row g-3 mb-3" justify="center" align="top">

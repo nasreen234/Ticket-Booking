@@ -39,10 +39,10 @@
             style={{ width: '100%', height: '500px', objectFit: 'contain',backgroundColor:'white',borderRadius:'10px' }}
           />
           </div>
-          <div className='col-md-8'>
+          <div className='col-md-8 col-sm-12 '>
           <div style={{ padding: '100px', backgroundColor: 'white',color:'black', borderRadius: '10px', textAlign:'center' }}>
           <p className="text-center fw-bold fs-5">{movie.title}</p>
-   
+    
           <p><strong>🎬 TITLE:</strong> {movie.title}</p>
           <p><strong>🎟️ TICKET PRICE:</strong> ₹{movie.ticketprice}</p>
           <p><strong>🗓️ RELEASE DATE:</strong> {movie.releasedate}</p>
@@ -51,13 +51,14 @@
           <p><strong>📌 DESCRIPTION: </strong>{movie.description}</p>
           
            
-           <button className="btn btn-success w-30 ms-4"
+           <button className="btn btn-success w-30 ms-4 zoom-button"
            onClick={() => navigate(`/home`)}>Back</button>
             
-             <button className= "btn btn-success w-30 ms-4"
+             <button className= "btn btn-success w-30 ms-4 zoom-button"
              onClick={() =>{
               updateCart('add',movie);
-              navigate(`/cart`)
+             toast.success(`${movie.title} added to cart!`);
+               navigate(`/cart`)
               }}>
              Add to Cart
           </button>

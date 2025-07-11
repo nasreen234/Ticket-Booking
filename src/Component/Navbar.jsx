@@ -1,28 +1,20 @@
-
 import images1 from '../Assets/images1.jpg';
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import CartButton from '../Context/CartButton';
 import { SearchContext } from '../Context/SearchContext';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { jwtDecode } from 'jwt-decode';
 
 const Navbar = () => {
   const { searchTerm, setSearchTerm } = useContext(SearchContext);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const token = localStorage.getItem('user');
   let user = null;
 
   if (token) {
-   user = JSON.parse(token); // For manual login
-
-    // user.name, user.email, etc.
+    user = JSON.parse(token); // Assuming 'user' contains name, email, etc.
   }
-  { user ? <span>Welcome, {user.name}</span> : <Link to="/">Login</Link> }
-
-
-  const location = useLocation();
-  const navigate = useNavigate();
 
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
@@ -30,16 +22,15 @@ const Navbar = () => {
       navigate('/home'); // redirect to home so filtering is visible
     }
   };
-  const isLoggedIn = localStorage.getItem('user');
 
   const handleLogout = () => {
     localStorage.clear(); // ✅ Clear login data
     navigate('/');        // 🔁 Redirect to login page
   };
+
   return (
     <>
-
-      <nav className="navbar navbar-expand-lg navbar-dark bg-primary px-3 mt-3">
+     <nav className="navbar navbar-expand-lg navbar-dark bg-primary px-3 mt-3">
         <Link className="navbar-brand d-flex align-items-center text-light" to="/home">
           <img
             src={images1}
@@ -49,7 +40,6 @@ const Navbar = () => {
           <span style={{ fontWeight: "bold", marginLeft: "10px" }}>RMM CINEMAS</span>
         </Link>
 
-        {/* Toggler Button */}
         <button
           className="navbar-toggler"
           type="button"
@@ -62,9 +52,8 @@ const Navbar = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        {/* Collapsible Content */}
-        <div className="collapse navbar-collapse" id="navbarContent">
-          <ul className="navbar-nav ms-5">
+        <div className="collapse navbar-collapse  flex-column flex-lg-row" id="navbarContent">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <Link className="nav-link text-light" to="/home">Home</Link>
             </li>
@@ -76,30 +65,30 @@ const Navbar = () => {
             </li>
           </ul>
 
-
-          <div className="ms-auto d-flex align-items-center gap-3">
-
-            {/* Search Bar */}
+  <div className="d-flex flex-column flex-lg-row align-items-start align-items-lg-center mt-1 mt-lg-0 text-start">
+   
+           {/* Search Bar*/}
             <input
               type="text"
-              placeholder='SearchText...'
-              className="form-control form-control-sm w-auto ms-5 p-2  mb-0"
+              placeholder="SearchText..."
+              className="form-control form-control-sm w-auto ms-5 p-2 mb-0"
               value={searchTerm}
               onChange={handleSearchChange}
             />
+           <CartButton />
+            <button className="btn btn-success btn-outline-dark ms-3" onClick={handleLogout}>
+              Logout
+            </button>
 
+            
           </div>
-
-          <CartButton />
-          <button className="btn btn-success btn-outline-dark ms-3" onClick={handleLogout}>
-            Logout</button>
-</div>
-
+        </div>
+         
       </nav>
     </>
   );
 };
 
+export default Navbar; 
 
 
-export default Navbar;
